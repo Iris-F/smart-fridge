@@ -1,0 +1,24 @@
+<%- include('../partials/head')%>
+
+    <body>
+        <%- include('../partials/navbar.ejs')%>
+            <div class="container">
+                <h1>
+                    Choose a category
+                </h1>
+
+                <ul>
+                    <% for(let category of categories){ %>
+                        <li>
+
+                            <a href="/groceries/new?category=<%=category%>">
+                                <%=category%>
+                            </a>
+                        </li>
+                        <% } %>
+                </ul>
+
+            </div>
+    </body>
+
+    </html>

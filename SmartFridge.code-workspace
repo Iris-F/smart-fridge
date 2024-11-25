@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../Mongoose_With_Express_CODE"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../AuthDemo"
+		},
+		{
+			"path": "../Bootstrap_Demo"
+		}
+	],
+	"settings": {}
+}

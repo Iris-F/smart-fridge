@@ -1,0 +1,39 @@
+<%- include('../partials/head')%>
+
+    <body>
+        <%- include('../partials/navbar.ejs')%>
+            <div class="container">
+                <h1>
+                    <%= category%> Inventory Items
+                </h1>
+                <ul>
+                    <% for(let product of products) { %>
+                        <li>
+
+                            <%= product.name %>,
+                                Quantity: <%= product.quantity %>,
+                                    Category:
+                                    <%= product.category %>
+
+
+                                        Expiry Date: <%= product.expirydate ?
+                                            product.expirydate.toLocaleDateString('nl-NL') : 'N/A' %>
+
+                                            <a href="/products/<%=product._id%>/edit">Edit Item</a>
+
+                                            <form style="display: inline-block"
+                                                action=" /products/<%=product._id%>?_method=DELETE" method="POST">
+                                                <button class="btn btn-link">Delete</button>
+                                            </form>
+
+                        </li>
+                        <% }%>
+                </ul>
+                <a href="/products/new">Add New Inventory Item</a>
+                <%if(category !=='All' ) {%>
+                    <a href="/products">All Products</a>
+                    <% } %>
+            </div>
+    </body>
+
+    </html>

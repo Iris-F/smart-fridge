@@ -1,0 +1,25 @@
+<%- include('../partials/head')%>
+
+    <body>
+        <%- include('../partials/navbar.ejs')%>
+            <div class="container">
+                <h1>Sign up</h1>
+                <form action="/register" method="POST">
+                    <div>
+                        <label for="username">Enter Username:</label>
+                        <input type="text" name="username" id="username" placeholder="username">
+                    </div>
+                    <div>
+                        <label for="password">Enter password:</label>
+                        <input type="password" name="password" id="password" placeholder="password">
+                    </div>
+                    <!--The first link should be a button
+                <button class="btn btn-primary">Sign Up</button>
+            -->
+                    <a href="/signup" class="btn btn-primary signup">Sign Up</a>
+                    <a href="/" class="btn btn-primary">Back</a>
+                </form>
+            </div>
+    </body>
+
+    </html>

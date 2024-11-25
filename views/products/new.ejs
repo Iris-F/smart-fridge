@@ -1,0 +1,38 @@
+<%- include('../partials/head')%>
+
+    <body>
+        <%- include('../partials/navbar.ejs')%>
+            <div class="container">
+                <h1>Add an Inventory Item</h1>
+                <form action="/products" method="POST">
+                    <label for="name">Name of Inventory Item</label>
+                    <input type="text" name="name" id="name" required placeholder="Inventory item name">
+
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" required placeholder="Quantity">
+
+                    <label for="category">Select Category</label>
+                    <select name="category" required id="category">
+                        <option disabled selected value>
+                            Select a category
+                        </option>
+                        <% for(let category of categories){ %>
+                            <option value="<%=category%>">
+                                <%=category%>
+                            </option>
+                            <% } %>
+                    </select>
+
+                    <label for="expirydate">Expiry Date</label>
+                    <input type="date" id="expirydate" name="expirydate">
+
+                    <button>Submit</button>
+                </form>
+            </div>
+            <div class="container">
+                <a href="/products"">Back</a>
+                </form>
+            </div>
+    </body>
+
+    </html>

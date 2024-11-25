@@ -1,0 +1,33 @@
+<%- include('../partials/head')%>
+
+    <body>
+        <%- include('../partials/navbar.ejs')%>
+            <div class="container">
+                <h1>
+                    Shopping List
+                </h1>
+                <h4>
+                    Available Inventory Items
+                </h4>
+
+                <ul>
+                    <% for(let product of products) { %>
+                        <li>
+
+                            <%= product.name %>,
+                                Quantity: <%= product.quantity %>,
+                                    Category:
+                                    <%= product.category %>
+
+                        </li>
+                        <% }%>
+                </ul>
+                <h2>
+                    Shopping List Items
+                </h2>
+                <a href="/groceries/categories">Add New Item to Shopping List</a>
+
+            </div>
+    </body>
+
+    </html>
