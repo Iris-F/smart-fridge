@@ -15,7 +15,7 @@ dbUrl = process.env.DB_URL;
 const Product = require('./models/product');
 //database connection
 // dbUrl OR 'mongodb://localhost:27017/smartFridge'
-mongoose.connect('mongodb://localhost:27017/smartFridge')
+mongoose.connect(dbUrl)
     .then(() => {
         console.log("MONGO CONNECTION OPEN!!!")
     })
