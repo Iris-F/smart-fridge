@@ -47,13 +47,13 @@ app.get('/', (req, res) => {
 //SHOW: show a list of all products
 app.get('/products', async (req, res) => {
     const { category } = req.query;
-    if (category) {
-        const products = await Product.find({ category })
-        res.render('products/index', { products, category })
-    } else {
-        const products = await Product.find({})
-        res.render('products/index', { products, category: 'All' })
-    }
+    //if (category) {
+    //   const products = await Product.find({ category })
+    const products = await Product.find({})
+    res.render('products/index', { products, categories, category })
+    //   } else {
+    //      const products = await Product.find({})
+    //      res.render('products/index', { products, category: 'All' })
 })
 
 
@@ -123,7 +123,7 @@ app.get('/groceries/categories', (req, res) => {
     res.render('groceries/categories', { categories })
 })
 
-//show form for adding new items to shopping list > but doesn't work yet the way I want it
+//show form for adding new items to shopping list
 
 app.get('/groceries/new', async (req, res) => {
     const { category } = req.query;
