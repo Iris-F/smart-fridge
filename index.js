@@ -109,13 +109,14 @@ app.delete('/products/:id', async (req, res) => {
 //show all products
 app.get('/groceries', async (req, res) => {
     const { category } = req.query;
-    if (category) {
-        const products = await Product.find({ category })
-        res.render('groceries/index', { products, category })
-    } else {
-        const products = await Product.find({})
-        res.render('groceries/index', { products, category: 'All' })
-    }
+    // if (category) {
+    //    const products = await Product.find({ category })
+    const products = await Product.find({})
+    res.render('groceries/index', { products, categories, category })
+    //} else {
+    //    const products = await Product.find({})
+    //    res.render('groceries/index', { products, category: 'All' })
+
 })
 
 //show categories for adding a new shopping list item

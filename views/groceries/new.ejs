@@ -4,6 +4,7 @@
         <%- include('../partials/navbar.ejs')%>
             <div class="container">
                 <h1>Add a Shopping List Item</h1>
+                <hr>
                 <h4>Available Inventory Items for category: <%= category %>
                 </h4>
                 <ul>
@@ -17,6 +18,7 @@
                         </li>
                         <% }%>
                 </ul>
+                <hr>
                 <h2>
                     Add Shopping List Items
                 </h2>
@@ -30,8 +32,9 @@
                     <button disabled>Submit</button>
                 </form>
             </div>
+            <hr>
             <div class="container">
-                <a href="/groceries/categories">Back</a>
+                <a href="/groceries/categories">Back to categories</a>
                 <a href="/groceries"">Cancel</a>
                 </form>
             </div>

@@ -10,18 +10,35 @@
                     Available Inventory Items
                 </h4>
 
+                <hr>
+
                 <ul>
-                    <% for(let product of products) { %>
-                        <li>
+                    <% for(let category of categories){ %>
+                        <%const hasProducts=products.some(product=> product.category === category); %>
+                            <% if (hasProducts) { %>
+                                <li style="list-style-type: none;">
+                                    <b>
+                                        <%=category%>
+                                    </b>
 
-                            <%= product.name %>,
-                                Quantity: <%= product.quantity %>,
-                                    Category:
-                                    <%= product.category %>
+                                    <ul>
+                                        <% for(let product of products) { %>
+                                            <% if (product.category===category) { %>
+                                                <li>
 
-                        </li>
-                        <% }%>
+                                                    <%= product.name %>,
+                                                        Quantity: <%= product.quantity %>
+
+                                                            <% }%>
+                                                </li>
+                                                <% }%>
+                                    </ul>
+
+                                </li>
+                                <%}%>
+                                    <% } %>
                 </ul>
+                <hr>
                 <h2>
                     Shopping List Items
                 </h2>
