@@ -1,0 +1,28 @@
+<%- include('../partials/head')%>
+
+    <body>
+        <%- include('../partials/navbar.ejs')%>
+            <div class="container">
+                <h1>
+                    All Users
+                </h1>
+
+                <hr>
+                <ul>
+
+                    <% for(let user of users) { %>
+                        <li>
+                            <%= user.username %>
+                                <form style="display: inline-block" action=" /users/<%=user._id%>?_method=DELETE"
+                                    method="POST">
+                                    <button class="btn btn-link">Delete</button>
+                                </form>
+                                <% }%>
+                        </li>
+                </ul>
+                <hr>
+                <a href="/products">Back to Inventory List</a>
+            </div>
+    </body>
+
+    </html>

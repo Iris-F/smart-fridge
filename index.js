@@ -8,11 +8,13 @@ const methodOverride = require('method-override')
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt')
 const cookieParser = require('cookie-parser')
+const session = require('express-session')
 
 dbUrl = process.env.DB_URL;
 
-//require Model
+//require Models
 const Product = require('./models/product');
+const User = require('./models/user');
 //database connection
 // dbUrl OR 'mongodb://localhost:27017/smartFridge'
 mongoose.connect(dbUrl)
@@ -30,6 +32,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true })); //For form data
 app.use(express.json()); //For JSON Data
 app.use(methodOverride('_method'))
+app.use(session({ secret: 'notagoodsecret', resave: true, saveUninitialized: true }))
 //app.use(express.static(__dirname + '/public'));
 //added the following line to send static files like css and js to the client
 app.use("/public", express.static('./public/'));
@@ -42,18 +45,17 @@ app.get('/', (req, res) => {
     res.render('./home')
 })
 
-//routes for inventory items
+//PRODUCTS / INVENTORY ITEMS routes for inventory items
 
-//SHOW: show a list of all products
+//SHOW: show a list of all inventory items
 app.get('/products', async (req, res) => {
-    const { category } = req.query;
-    //if (category) {
-    //   const products = await Product.find({ category })
+    if (!req.session.user_id) {
+        return res.redirect('/login')
+    }
+    const { category } = Product;
     const products = await Product.find({})
     res.render('products/index', { products, categories, category })
-    //   } else {
-    //      const products = await Product.find({})
-    //      res.render('products/index', { products, category: 'All' })
+
 })
 
 
@@ -104,27 +106,19 @@ app.delete('/products/:id', async (req, res) => {
 
 //routes for grocery list
 
-//show grocery list
-
-//show all products
+//SHOW: show all available inventory items (=products)
 app.get('/groceries', async (req, res) => {
-    const { category } = req.query;
-    // if (category) {
-    //    const products = await Product.find({ category })
+    const { category } = Product;
     const products = await Product.find({})
     res.render('groceries/index', { products, categories, category })
-    //} else {
-    //    const products = await Product.find({})
-    //    res.render('groceries/index', { products, category: 'All' })
-
 })
 
-//show categories for adding a new shopping list item
+//SHOW: show categories for adding a new shopping list item
 app.get('/groceries/categories', (req, res) => {
     res.render('groceries/categories', { categories })
 })
 
-//show form for adding new items to shopping list
+//SHOW: show form for adding new items to shopping list
 
 app.get('/groceries/new', async (req, res) => {
     const { category } = req.query;
@@ -132,18 +126,71 @@ app.get('/groceries/new', async (req, res) => {
     res.render('groceries/new', { products, category, categories })
 })
 
-//routes for users
+
+//USERS: routes for users
 
 //signup
+
+//SHOW: show signup page
 app.get('/signup', (req, res) => {
     res.render('./users/signup')
 })
 
-//login
+// NEW: create new user with password
+
+app.post('/signup', async (req, res) => {
+    const { password, username } = req.body;
+    // const hash = await bcrypt.hash(password, 12);
+    const user = new User({ username, password })
+    await user.save();
+    req.session.user_id = user._id;
+    res.redirect('/products')
+})
+
+//SHOW: show login page
 app.get('/login', (req, res) => {
     res.render('./users/login')
 })
 
+//LOGGING IN
+
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+    const foundUser = await User.findAndValidate(username, password);
+    if (foundUser) {
+        req.session.user_id = foundUser._id;
+        res.redirect('/products');
+    }
+    else {
+        res.redirect('/login')
+    }
+
+})
+
+// LOG OUT
+app.post('/logout', (req, res) => {
+    req.session.user_id = null;
+    res.redirect('/')
+})
+
+
+//SHOW: show all users
+app.get('/users', async (req, res) => {
+    if (!req.session.user_id) {
+        return res.redirect('/login')
+    }
+    const { username } = User;
+    const users = await User.find({})
+    res.render('users/index', { users })
+
+})
+
+//DELETE: delete a user
+app.delete('/users/:id', async (req, res) => {
+    const { id } = req.params;
+    const deletedProduct = await User.findByIdAndDelete(id);
+    res.redirect('/users');
+})
 
 //event listener
 app.listen(3000, () => {
