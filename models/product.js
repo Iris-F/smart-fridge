@@ -21,6 +21,9 @@ const productSchema = new mongoose.Schema({
     }
 })
 
+// Create a text index on the 'name' field
+productSchema.index({ name: 'text' });
+
 const Product = mongoose.model('Product', productSchema);
 
 module.exports = Product;

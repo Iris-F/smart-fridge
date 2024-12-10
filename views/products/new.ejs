@@ -4,29 +4,42 @@
         <%- include('../partials/navbar.ejs')%>
             <div class="container">
                 <h1>Add an Inventory Item</h1>
-                <form action="/products" method="POST">
-                    <label for="name">Name of Inventory Item</label>
-                    <input type="text" name="name" id="name" required placeholder="Inventory item name">
+                <form class="search" action="/products/search" method="GET">
+                    <div class="container">
+                        <input class="search" type="text" placeholder="Search for an item" name="itemname">
+                        <button><i class="fas fa-search">Search</i></button>
+                    </div>
+                </form>
+                <hr>
+                <div>
+                    <h3>Or add your own item:</h3>
+                </div>
 
-                    <label for="quantity">Quantity</label>
-                    <input type="number" id="quantity" name="quantity" required placeholder="Quantity">
+                <div class="container">
+                    <form action="/products" method="POST">
+                        <label for="name">Name of Inventory Item</label>
+                        <input type="text" name="name" id="name" required placeholder="Inventory item name">
 
-                    <label for="category">Select Category</label>
-                    <select name="category" required id="category">
-                        <option disabled selected value>
-                            Select a category
-                        </option>
-                        <% for(let category of categories){ %>
-                            <option value="<%=category%>">
-                                <%=category%>
+                        <label for="quantity">Quantity</label>
+                        <input type="number" id="quantity" name="quantity" required placeholder="Quantity">
+
+                        <label for="category">Select Category</label>
+                        <select name="category" required id="category">
+                            <option disabled selected value>
+                                Select a category
                             </option>
-                            <% } %>
-                    </select>
+                            <% for(let category of categories){ %>
+                                <option value="<%=category%>">
+                                    <%=category%>
+                                </option>
+                                <% } %>
+                        </select>
 
-                    <label for="expirydate">Expiry Date</label>
-                    <input type="date" id="expirydate" name="expirydate">
+                        <label for="expirydate">Expiry Date</label>
+                        <input type="date" id="expirydate" name="expirydate">
 
-                    <button>Submit</button>
+                        <button>Submit</button>
+                </div>
                 </form>
             </div>
             <div class="container">
