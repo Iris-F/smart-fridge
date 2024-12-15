@@ -54,7 +54,7 @@
                     </select>
 
                     <label for="quantity">Quantity</label>
-                    <input type="number" id="quantity" name="quantity" required placeholder="Quantity">
+                    <input type="number" id="quantity" name="quantity" required min="1" placeholder="Quantity">
 
                     <label for="expirydate">Expiry Date</label>
                     <input type="date" id="expirydate" name="expirydate">
@@ -81,8 +81,7 @@
                     const selectedOption = productSelect.options[productSelect.selectedIndex];
                     const category = selectedOption.getAttribute('data-category');
                     const quantity = selectedOption.getAttribute('data-quantity');
-                    console.log(`Selected Product Quantity: ${quantity}`);
-            
+                                
                     // Set the quantity input field
                     if (quantity) {
                         quantityInput.value = quantity;

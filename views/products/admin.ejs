@@ -4,19 +4,19 @@
         <%- include('../partials/navbar.ejs')%>
             <div class="container">
                 <h1>
-                    All Inventory Items <a href="/products/addtolist" class="btn btn-primary">Add Inventory Item</a>
+                    ADMIN PAGE - All Products in database <a href="/products/new" class="btn btn-primary">Add a New Product to database</a>
                 </h1>
 
                 <hr>
                 <ul>
                 <% for(let category of categories){ %>
-                    <%const hasProducts=products.some(product=> (product.category === category && product.quantity >0)); %>
+                    <%const hasProducts=products.some(product=> product.category === category); %>
                     <% if (hasProducts) { %>
                         <li style="list-style-type: none;">
                             <b><%=category%></b>
                             <ul>
                             <% for(let product of products) { %>
-                                <% if (product.category===category && product.quantity > 0) { %>
+                                <% if (product.category===category) { %>
                                 <li>
                                     <%= product.name %>,
                                     Quantity: <%= product.quantity %>,
@@ -26,11 +26,9 @@
                                     product.expirydate.toLocaleDateString('nl-NL')
                                     : 'N/A' %>
                                     <a href="/products/<%=product._id%>/edit">Edit Item</a>
-                                   <!--
                                     <form style="display: inline-block" action=" /products/<%=product._id%>?_method=DELETE" method="POST">
                                         <button class="btn btn-link">Delete</button>
                                     </form>
-                                -->
                                 </li>
                                 <%}%>
                             <%}%>
@@ -41,9 +39,8 @@
                 </ul>
                 <hr>
 
-                <a href="/products/addtolist" class="btn btn-primary">Add New Inventory Item</a>
-                <a href="/groceries" class="btn btn-primary">Create Shopping List</a>
-
+                <a href="/products/new" class="btn btn-primary">Add New Inventory Item</a>
+                
             </div>
     </body>
 

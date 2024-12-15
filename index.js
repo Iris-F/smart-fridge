@@ -88,7 +88,7 @@ app.post('/products', async (req, res) => {
             expirydate: expirydate ? new Date(expirydate) : null // Convert string to Date
         });
         await newProduct.save();
-        console.log(req.body.expirydate);
+        console.log("Saving new product!");
         res.redirect('/products/');
     } catch (error) {
         console.error("Error saving product:", error);
@@ -110,12 +110,27 @@ app.put('/products/:id', async (req, res) => {
     res.redirect('/products/');
 })
 
-//DELETE: delete a product
+
+//ADMIN page
+
+//SHOW: show a list of all products in database
+app.get('/products/admin', async (req, res) => {
+    if (!req.session.user_id) {
+        return res.redirect('/users/login')
+    }
+    const { category } = Product;
+    const products = await Product.find({})
+    res.render('products/admin', { products, categories, category })
+
+})
+
+//DELETE: delete a product (only available for admin)
 app.delete('/products/:id', async (req, res) => {
     const { id } = req.params;
     const deletedProduct = await Product.findByIdAndDelete(id);
-    res.redirect('/products');
+    res.redirect('/products/admin');
 })
+
 
 
 //routes for grocery list
