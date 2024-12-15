@@ -4,56 +4,43 @@
         <%- include('../partials/navbar.ejs')%>
             <div class="container">
                 <h1>
-                    All Inventory Items
+                    All Inventory Items <a href="/products/addtolist" class="btn btn-primary">Add Inventory Item</a>
                 </h1>
 
                 <hr>
                 <ul>
-                    <% for(let category of categories){ %>
-                        <%const hasProducts=products.some(product=> product.category === category); %>
-                            <% if (hasProducts) { %>
-                                <li style="list-style-type: none;">
-                                    <b>
-                                        <%=category%>
-                                    </b>
-
-                                    <ul>
-
-                                        <% for(let product of products) { %>
-                                            <% if (product.category===category) { %>
-                                                <li>
-
-                                                    <%= product.name %>,
-                                                        Quantity: <%= product.quantity %>,
-
-                                                            Category:
-                                                            <%= product.category %>,
-
-
-                                                                Expiry Date: <%= product.expirydate ?
-                                                                    product.expirydate.toLocaleDateString('nl-NL')
-                                                                    : 'N/A' %>
-
-                                                                    <a href="/products/<%=product._id%>/edit">Edit
-                                                                        Item</a>
-
-                                                                    <form style="display: inline-block"
-                                                                        action=" /products/<%=product._id%>?_method=DELETE"
-                                                                        method="POST">
-                                                                        <button class="btn btn-link">Delete</button>
-                                                                    </form>
-                                                                    <% }%>
-                                                </li>
-                                                <% }%>
-                                    </ul>
+                <% for(let category of categories){ %>
+                    <%const hasProducts=products.some(product=> product.category === category); %>
+                    <% if (hasProducts) { %>
+                        <li style="list-style-type: none;">
+                            <b><%=category%></b>
+                            <ul>
+                            <% for(let product of products) { %>
+                                <% if (product.category===category) { %>
+                                <li>
+                                    <%= product.name %>,
+                                    Quantity: <%= product.quantity %>,
+                                    Category:
+                                    <%= product.category %>,
+                                    Expiry Date: <%= product.expirydate ?
+                                    product.expirydate.toLocaleDateString('nl-NL')
+                                    : 'N/A' %>
+                                    <a href="/products/<%=product._id%>/edit">Edit Item</a>
+                                    <form style="display: inline-block" action=" /products/<%=product._id%>?_method=DELETE" method="POST">
+                                        <button class="btn btn-link">Delete</button>
+                                    </form>
                                 </li>
                                 <%}%>
-                                    <% } %>
+                            <%}%>
+                            </ul>
+                        </li>
+                    <%}%>
+                <%}%>
                 </ul>
                 <hr>
 
-                <a href="/products/new">Add New Inventory Item</a>
-                <a href="/groceries">Create Shopping List</a>
+                <a href="/products/addtolist" class="btn btn-primary">Add New Inventory Item</a>
+                <a href="/groceries" class="btn btn-primary">Create Shopping List</a>
 
             </div>
     </body>

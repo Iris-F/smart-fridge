@@ -59,14 +59,24 @@ app.get('/products', async (req, res) => {
 
 })
 
+//NEW: show form for adding an existing product to the inventory list
 
-//NEW: show form for creating a new product
-
-app.get('/products/new', (req, res) => {
+app.get('/products/addtolist', async (req, res) => {
     if (!req.session.user_id) {
         return res.redirect('/users/login')
     }
-    res.render('products/new', { categories })
+    const products = await Product.find({})
+    res.render('products/addtolist', { products, categories })
+})
+
+//NEW: show form for creating a new product
+
+app.get('/products/new', async (req, res) => {
+    if (!req.session.user_id) {
+        return res.redirect('/users/login')
+    }
+    const products = await Product.find({})
+    res.render('products/new', { products, categories })
 })
 
 //NEW: save the product in database with a POST method using an async function because this takes time

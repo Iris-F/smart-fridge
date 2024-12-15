@@ -49,10 +49,8 @@ router.post('/logout', (req, res) => {
 
 
 //SHOW: show all users
-router.get('/users', async (req, res) => {
-    if (!req.session.user_id) {
-        return res.redirect('/login')
-    }
+router.get('/', async (req, res) => {
+
     const { username } = User;
     const users = await User.find({})
     res.render('users/index', { users })
