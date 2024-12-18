@@ -55,6 +55,7 @@ app.get('/products', async (req, res) => {
     }
     const { category } = Product;
     const products = await Product.find({})
+    products.sort((a, b) => a.name.localeCompare(b.name));
     res.render('products/index', { products, categories, category })
 
 })
@@ -65,6 +66,7 @@ app.get('/products/addtolist', async (req, res) => {
         return res.redirect('/users/login')
     }
     const products = await Product.find({})
+    products.sort((a, b) => a.name.localeCompare(b.name));
     res.render('products/addtolist', { products, categories })
 })
 
@@ -128,6 +130,7 @@ app.get('/products/admin', async (req, res) => {
     }
     const { category } = Product;
     const products = await Product.find({})
+    products.sort((a, b) => a.name.localeCompare(b.name));
     res.render('products/admin', { products, categories, category })
 
 })
@@ -150,6 +153,7 @@ app.get('/groceries', async (req, res) => {
     }
     const { category } = Product;
     const products = await Product.find({})
+    products.sort((a, b) => a.name.localeCompare(b.name));
     res.render('groceries/index', { products, categories, category })
 })
 
