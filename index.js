@@ -60,7 +60,6 @@ app.get('/products', async (req, res) => {
 })
 
 //NEW: show form for adding an existing product to the inventory list
-
 app.get('/products/addtolist', async (req, res) => {
     if (!req.session.user_id) {
         return res.redirect('/users/login')
@@ -69,8 +68,17 @@ app.get('/products/addtolist', async (req, res) => {
     res.render('products/addtolist', { products, categories })
 })
 
-//NEW: show form for creating a new product
+//EDIT inventory item in the database: save changes to database
+app.put('/products/addtolist', async (req, res) => {
+    if (!req.session.user_id) {
+        return res.redirect('/users/login')
+    }
+    const { id } = req.body;
+    const product = await Product.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
+    res.redirect('/products/');
+})
 
+//NEW: show form for creating a new product
 app.get('/products/new', async (req, res) => {
     if (!req.session.user_id) {
         return res.redirect('/users/login')

@@ -15,11 +15,11 @@
                 <hr>
             -->
             <div class="container">
-                <form action="/products" method="POST">
+                <form action="/products/addtolist?_method=PUT" method="POST">
                     <p>Select an Inventory Item from the list:</p>
                     <label for="name">Inventory item</label>
 
-                    <select name="name" required id="name">
+                    <select name="id" required id="name">
                             <option disabled selected value>
                                 Select a product
                             </option>
@@ -30,7 +30,7 @@
                                 <optgroup label="<%=category%>">
                                     <% for(let product of products) { %>
                                         <% if (product.category===category) { %>
-                                            <option value="<%= product.name %>" data-category="<%= product.category %>" data-quantity="<%= product.quantity %>">
+                                            <option value="<%= product._id %>" data-category="<%= product.category %>" data-quantity="<%= product.quantity %>">
                                             <%= product.name %>
 
                                         </option>
