@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Document</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', Arial, sans-serif;
+        color: var(--secondary-color);
+        font-size: 1.3rem;
+      }
+
+      /* variables */
+      :root {
+        --primary-color: #50b447;
+        --secondary-color: rgb(48, 50, 51);
+        --mygreysh-color: rgb(232, 236, 243);
+      }
+
+      /* nav */
+
+      .flex-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-around;
+        padding-top: 1.5rem;
+        margin: 2rem;
+      }
+
+      .inventory-para {
+        font-size: 0.8rem;
+      }
+      .three-dots-img {
+        width: 40px;
+      }
+
+      .categories {
+        display: flex;
+        justify-content: center;
+        color: var(--primary-color);
+        /* margin: 0 auto; */
+        border-bottom: 2px solid rgb(181, 186, 188);
+        width: 90%;
+        padding-bottom: 0.8rem;
+      }
+      .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 30px;
+        padding-left: 20%;
+        margin: 1rem;
+      }
+      img {
+        width: 50%; /* Make images take the full width of their container */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 1.5rem;
+      }
+
+      .grid-container {
+        flex: 1;
+      }
+      footer {
+        background-color: var(--mygreysh-color);
+        height: 5rem;
+        display: flex; /* Make footer a flex container */
+        align-items: center; /* Vertically center the content */
+      }
+      .upper-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%; /* Ensure the flex container takes up full width */
+      }
+
+      .star-icon {
+        display: inline-block; /* Makes the div behave like a block-level element */
+        background-color: rgb(
+          155,
+          211,
+          237
+        ); /* Red background around the star */
+        border-radius: 50%; /* Make the background circular */
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+        border-bottom-left-radius: 2rem;
+        padding: 10px 25px; /* Add some padding around the star */
+        width: fit-content; /* Ensures the background resizes with the icon */
+        height: fit-content; /* Ensures the background resizes with the icon */
+      }
+
+      .fa-star {
+        font-size: 0.5rem; /* The size of the star icon */
+        color: black; /* The color of the star itself */
+      }
+
+      .black-star-inside-white-circle {
+        width: 20px;
+      }
+      .home-icon-and-text,
+      .recipe-icon-and-text {
+        display: flex;
+        flex-direction: column;
+        justify-content:;
+        align-items: center;
+        width: 100%; /* Ensure full width of the parent */
+      }
+      .text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex-container">
+      <nav>
+        <div class="arrow-flex-item">
+          <i class="fa-solid fa-arrow-left"></i>
+        </div>
+        <div class="heading">
+          <p class="inventory-para">Inventory List</p>
+        </div>
+        <div class="three-dots-icon">
+          <img
+            class="three-dots-img"
+            src="./icons/three-dots-vertical.png"
+            alt="icon"
+          />
+        </div>
+      </nav>
+
+      <div class="categories">Categories</div>
+      <div class="grid-container">
+        <div class="category-name">
+          <img src="./assets/apple.jpeg" alt="pic of planet" />
+          <p>Fruits</p>
+        </div>
+        <div class="category-name">
+          <img src="./assets/broccoli.jpeg" />
+          <p>Vegetables</p>
+        </div>
+        <div class="category-name">
+          <img src="./assets/meat.jpeg" alt="pic of planet" />
+          <p>Meat</p>
+        </div>
+        <div class="category-name">
+          <img src="./assets/meat.jpeg" />
+          <p>Seafood</p>
+        </div>
+        <div class="category-name">
+          <img src="./assets/meat.jpeg" alt="pic of planet" />
+          <p>Bakkery</p>
+        </div>
+        <div class="category-name">
+          <img src="./assets/grape juice.jpeg" alt="pic of planet" />
+          <p>Beverages</p>
+        </div>
+        <div class="category-name">
+          <img src="./assets/dairy.jpeg" alt="pic of planet" />
+          <p>Dairy</p>
+        </div>
+        <div class="category-name">
+          <img src="./assets/frozen foor.jpg" alt="pic of planet" />
+          <p>Frozen</p>
+        </div>
+      </div>
+      <footer>
+        <div class="upper-footer">
+          <div class="home-icon-and-text">
+            <div>
+              <img
+                class="black-star-inside-white-circle"
+                src="./icons/black-star-inside-white-circle.jpeg"
+                alt="icon"
+              />
+            </div>
+            <div class="text">Home</div>
+          </div>
+          <div class="recipe-icon-and-text">
+            <div>
+              <img
+                class="black-star-inside-white-circle"
+                src="./icons/black-star-inside-white-circle.jpeg"
+                alt="icon"
+              />
+            </div>
+            <div class="text">Recipe Suggestion</div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const arrow = document.querySelector('.fa-arrow-left');
+      arrow.addEventListener('click', function () {
+        window.location.href = 'page2-inventory-list.html'; // Redirect to home.html
+      });
+    </script>
+  </body>
+</html>

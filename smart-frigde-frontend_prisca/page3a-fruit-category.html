@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Per Category</title>
+
+    <style>
+      /* reset */
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', Arial, sans-serif;
+        color: var(--secondary-color);
+        font-size: 1.3rem;
+      }
+
+      /* Ensure full height for html, body, and flex-container */
+      html,
+      body {
+        height: 100%;
+      }
+
+      /* variables */
+      :root {
+        --primary-color: #50b447;
+        --secondary-color: rgb(48, 50, 51);
+        --mygreysh-color: rgb(232, 236, 243);
+      }
+
+      /* base styles */
+      /* header */
+      header {
+        display: flex;
+      }
+      .heading {
+        margin: 0 auto;
+        margin-bottom: 2.5rem;
+        color: rgb(48, 50, 51);
+      }
+
+      .flex-container {
+        display: flex;
+        flex-direction: column;
+        padding-left: 20%;
+        padding-right: 20%;
+        padding-top: 2%;
+        height: 100%; /* Ensure full height */
+      }
+
+      .main {
+        flex: 1;
+      }
+
+      .arrow-flex-item {
+        background-color: rgb(232, 236, 243);
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .img-item-qty {
+        display: flex;
+        flex-wrap: wrap; /* Allows the content to wrap on smaller screens */
+        align-items: center;
+        justify-content: flex-start;
+        gap: 2vw; /* Flexible gap between elements */
+      }
+
+      /* Adjust the image size to 10% of the available space */
+      .image-container img {
+        width: 10vw; /* Makes the image width responsive */
+        height: auto;
+      }
+
+      /* Item name styles */
+      .item-name {
+        margin-left: 2vw; /* Responsive gap after the image */
+        font-size: 1.2rem; /* Font size scales with screen */
+        flex-grow: 1; /* Makes item-name flexible */
+      }
+
+      /* Item quantity style */
+      .item-quantity {
+        margin-left: auto; /* Ensures quantity stays on the right side */
+        font-size: 1.2rem; /* Scales font size */
+        margin-left: 5vw; /* Add responsive margin for spacing */
+      }
+
+      .category-section {
+        display: flex;
+        justify-content: center;
+      }
+      .category-name {
+        color: var(--primary-color);
+      }
+      img {
+        width: 25%; /* Make images take the full width of their container */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 1.5rem;
+      }
+
+      /* footer */
+
+      footer {
+        background-color: var(--mygreysh-color);
+        height: 5rem;
+        display: flex; /* Make footer a flex container */
+        align-items: center; /* Vertically center the content */
+        justify-content: center;
+      }
+      .upper-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%; /* Ensure the flex container takes up full width */
+      }
+
+      .star-icon {
+        display: inline-block; /* Makes the div behave like a block-level element */
+        background-color: rgb(
+          155,
+          211,
+          237
+        ); /* Red background around the star */
+        border-radius: 50%; /* Make the background circular */
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+        border-bottom-left-radius: 2rem;
+        padding: 10px 25px; /* Add some padding around the star */
+        width: fit-content; /* Ensures the background resizes with the icon */
+        height: fit-content; /* Ensures the background resizes with the icon */
+      }
+
+      .fa-star {
+        font-size: 0.5rem; /* The size of the star icon */
+        color: black; /* The color of the star itself */
+      }
+
+      .black-star-inside-white-circle {
+        width: 20px;
+      }
+      .home-icon-and-text,
+      .recipe-icon-and-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%; /* Ensure full width of the parent */
+      }
+      .text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* fonts */
+
+      /*// elements to animate //*/
+
+      /*// keyframes //*/
+
+      /* mobile styles */
+
+      /* small tablet styles */
+      @media screen and (min-width: 620px) {
+      }
+
+      /* large tablets & laptop styles */
+      @media screen and (min-width: 960px) {
+      }
+
+      /* desktop styles */
+      @media screen and (min-width: 1200px) {
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="main">
+        <div class="per-category">
+          <div class="category-section">
+            <h2 class="category-name">Fruits</h2>
+          </div>
+          <div class="img-item-qty">
+            <div class="image-container">
+              <img src="./assets/apple.jpeg" alt="fruit image" />
+            </div>
+            <div class="item-and-quantity"></div>
+            <div class="item-name">Apple</div>
+            <div class="item-quantity">3</div>
+          </div>
+
+          <div class="img-item-qty">
+            <div class="image-container">
+              <img src="./assets/mango.jpeg" alt="fruit image" />
+            </div>
+            <div class="item-and-quantity"></div>
+            <div class="item-name">Mango</div>
+            <div class="item-quantity">3</div>
+          </div>
+          <div class="img-item-qty">
+            <div class="image-container">
+              <img src="./assets/lemon.jpeg" alt="fruit image" />
+            </div>
+            <div class="item-and-quantity"></div>
+            <div class="item-name">Lemon</div>
+            <div class="item-quantity">3</div>
+          </div>
+          <div class="img-item-qty">
+            <div class="image-container">
+              <img src="./assets/banana.jpeg" alt="fruit image" />
+            </div>
+            <div class="item-and-quantity"></div>
+            <div class="item-name">Banana</div>
+            <div class="item-quantity">3</div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="upper-footer">
+          <div class="star-icon">
+            <i
+              class="fa fa-star"
+              style="
+                background-color: black;
+                color: white;
+                border-radius: 50%;
+                padding: 10px;
+              "
+            ></i>
+          </div>
+          <div class="home-icon-and-text">
+            <div>
+              <img
+                class="black-star-inside-white-circle"
+                src="./icons/black-star-inside-white-circle.jpeg"
+                alt="icon"
+              />
+            </div>
+            <div class="text">Home</div>
+          </div>
+          <div class="recipe-icon-and-text">
+            <div>
+              <img
+                class="black-star-inside-white-circle"
+                src="./icons/black-star-inside-white-circle.jpeg"
+                alt="icon"
+              />
+            </div>
+            <div class="text">Recipe Suggestion</div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

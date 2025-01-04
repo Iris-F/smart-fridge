@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Fontawesom for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Google fonts, font-style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&family=Playwrite+AU+QLD+Guides&display=swap"
+      rel="stylesheet"
+    />
+    <title>Responsive Grid Layout</title>
+    <style>
+      /*step 1 styles of the original grid before adding content*/
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* :root {
+        --mycolor: rgb(
+          124,
+          122,
+          133;
+          --secondary-color: background-color: rgb(72, 49, 165);
+        ); /*Define a global primary color  or define --property-name: value; to define a custom property. this one --color: rgb(124, 122, 133)*/
+
+      :root {
+        --mycolor: rgb(124, 122, 133); /* Define the primary color */
+        --secondary-color: rgb(72, 49, 165); /* Define the secondary color */
+      }
+      /*use the color in the body color: var(--mycolor); /* Use the primary color */
+
+
+  
+      /* Main grid container */
+      .grid-container {
+        display: grid;
+        grid-template-columns: 1fr; /* One column layout by default */
+        grid-template-rows: auto; /* Rows adjust based on content */
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      /* Header: Spans the entire width of the grid */
+      header {
+        grid-column: span 1;
+        padding: 0rem 5rem 0 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+      }
+
+      /* The grid-container-parent holds a 3x3 grid */
+      .grid-container-parent {
+        grid-column: span 1;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+        /* 3x3 grid based on available space */
+        /* grid-template-rows: auto; */
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      /* Footer: Spans the entire width of the grid */
+      .footer {
+        grid-column: span 2;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      /* Grid items */
+      .grid-item {
+        background-color: lightgray;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      /* Specific styling for the new-class divs */
+     
+    
+  /*newClassTwo to nine*/
+.newClass-parent {
+  display: flex;
+  flex-direction: column;
+  /* background-color: rgb(215, 211, 228); */
+  justify-content: center; /* Center children vertically */
+  align-items: center; /* Center children horizontally */
+  gap: 1rem;
+  margin: 0 auto; /* This will center this .newClass-parent horizontally */
+}
+ 
+
+
+
+      /* For screens above 768px, enforce a fixed 3x3 grid layout */
+
+  .grid-container-parent {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+
+
+
+    </style>
+  </head>
+  <body>
+    <div class="grid-container">
+      <!-- First row -->
+      <header class="grid-item header">  I THINK I HAVE TO MAKE THIS HEADER A FLEXBOX WITH THESE 3 DIVIS BUT CHECK HOW SSD SOLVE THIS KIND OF ISSUES IN THE CONTEXT OF THIS HEADER
+          <div>
+            <div class="menu-icon">
+              <i class="fa-solid fa-bars"> put right icon here </i>
+            </div>
+            <div class="menu-icon">
+              <i class="fa-solid fa-bars"> put left icon here </i>
+            </div>
+          </div>
+          <div class="categories">Categories</div>
+          <div>pit ga maginifying glass here</div>
+        </div>
+      </header>
+
+      <!-- Second row -->
+    
+
+      <!-- Third row -->
+     
+
+      <!-- Fourth row -->
+     
+
+      <!-- Fifth row: 3x3 grid inside grid-container-parent -->
+      <div class="grid-container-parent">
+        <div class="grid-item new-class">
+          <div class="grid-item new-class">
+            <div class="newClassNine">
+              <div class="image-container">
+                <img src="./assets/blue bcg.jpeg" alt="Image" class="image" />
+              </div>
+              <div class="text-container">
+                <p class="para1">New Class</p>
+                <p class="para2">we will have a new class</p>
+              </div>
+              <div class="button-container">
+                <button class="button read-more">READ MORE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item new-class">
+          <div class="grid-item new-class">
+            <div class="newClassNine">
+              <div class="image-container">
+                <img src="./assets/banner_image.png" alt="pic of planet">
+              </div>
+              <div class="text-container">
+                <p class="para1">New Class</p>
+                <p class="para2">we will have a new class</p>
+              </div>
+              <div class="button-container">
+                <button class="button read-more">READ MORE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item new-class">
+          <div class="grid-item new-class">
+            <div class="newClassNine">
+              <div class="image-container">
+                <img src="./assets/banner_image.png" alt="pic of planet">
+              </div>
+              <div class="text-container">
+                <p class="para1">New Class</p>
+                <p class="para2">we will have a new class</p>
+              </div>
+              <div class="button-container">
+                <button class="button read-more">READ MORE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item new-class">
+          <div class="grid-item new-class">
+            <div class="newClassNine">
+              <div class="image-container">
+                <img src="./assets/banner_image.png" alt="pic of planet">
+              </div>
+              <div class="text-container">
+                <p class="para1">New Class</p>
+                <p class="para2">we will have a new class</p>
+              </div>
+              <div class="button-container">
+                <button class="button read-more">READ MORE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid-item new-class">
+          <div class="grid-item new-class">
+            <div class="newClassNine">
+              <div class="image-container">
+                <img src="./assets/banner_image.png" alt="pic of planet">
+              </div>
+              <div class="text-container">
+                <p class="para1">New Class</p>
+                <p class="para2">we will have a new class</p>
+              </div>
+              <div class="button-container">
+                <button class="button read-more">READ MORE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item new-class">
+          <div class="grid-item new-class">
+            <div class="newClassNine">
+              <div class="image-container">
+                <img src="./assets/banner_image.png" alt="pic of planet">
+              </div>
+              <div class="text-container">
+                <p class="para1">New Class</p>
+                <p class="para2">we will have a new class</p>
+              </div>
+              <div class="button-container">
+                <button class="button read-more">READ MORE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="grid-item new-class">
+          <div class="grid-item new-class">
+            <div class="newClassNine">
+              <div class="image-container">
+                <img src="./assets/blue bcg.jpeg" alt="Image" class="image" />
+              </div>
+              <div class="text-container">
+                <p class="para1">New Class</p>
+                <p class="para2">we will have a new class</p>
+              </div>
+              <div class="button-container">
+                <button class="button read-more">READ MORE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item new-class">
+          <div class="grid-item new-class">
+            <div class="newClassNine">
+              <div class="image-container">
+                <img src="./assets/blue bcg.jpeg" alt="Image" class="image" />
+              </div>
+              <div class="text-container">
+                <p class="para1">New Class</p>
+                <p class="para2">we will have a new class</p>
+              </div>
+              <div class="button-container">
+                <button class="button read-more">READ MORE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item new-class">
+          <div class="grid-item new-class">
+            <div class="newClassNine">
+              <div class="image-container">
+                <img src="./assets/blue bcg.jpeg" alt="Image" class="image" />
+              </div>
+              <div class="text-container">
+                <p class="para1">New Class</p>
+                <p class="para2">we will have a new class</p>
+              </div>
+              <div class="button-container">
+                <button class="button read-more">READ MORE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Sixth row -->
+      <div class="grid-item footer">footer</div>
+    </div>
+  </body>
+</html>

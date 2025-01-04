@@ -1,0 +1,29 @@
+/* reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* variables */
+
+/* base styles */
+
+/* fonts */
+
+/*// elements to animate //*/
+
+/*// keyframes //*/
+
+/* mobile styles */
+
+/* small tablet styles */
+@media screen and (min-width: 620px) {
+}
+
+/* large tablets & laptop styles */
+@media screen and (min-width: 960px) {
+}
+
+/* desktop styles */
+@media screen and (min-width: 1200px) {
+}
