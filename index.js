@@ -43,6 +43,13 @@ const categories = ['fruit', 'vegetable', 'meat', 'seafood', 'bakery', 'beverage
 app.use('/users', userRoutes);
 
 app.get('/', (req, res) => {
+    res.render('./login')
+})
+
+app.get('/home', (req, res) => {
+    if (!req.session.user_id) {
+        return res.redirect('/users/login')
+    }
     res.render('./home')
 })
 

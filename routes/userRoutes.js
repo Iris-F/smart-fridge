@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
     const foundUser = await User.findAndValidate(username, password);
     if (foundUser) {
         req.session.user_id = foundUser._id;
-        res.redirect('/products');
+        res.redirect('/home');
     }
     else {
         res.redirect('/login')

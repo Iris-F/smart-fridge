@@ -1,14 +1,14 @@
 <%- include('./partials/head')%>
 
-
     <body>
-
-        <div class="container">
-            <h1 class="h1">Welcome to SmartFridge</h1>
-            <p>Login in or Sign up below</p>
-            <a href="users/login"><button name="login" class="btn btn-primary">Log In</button></a>
-            <a href="users/signup"><button name="signup" class="btn btn-primary signup">Sign Up</button></a>
-        </div>
+        <%- include('./partials/navbar.ejs')%>
+            <div class="container">
+                <h1 class="h1">Welcome to SmartFridge!</h1>
+                <p>Choose below where you want to go</p>
+                <a href="/products"><button name="inventory" class="btn btn-primary">Inventory List</button></a>
+                <a target="_blank" href="http://allrecipes.com"><button name="recipe" class="btn btn-primary">Recipe Search</button></a>
+                <a href="/groceries"><button name="grocerylist" class="btn btn-primary">Grocery List</button></a>
+                
+            </div>
     </body>
-
-    </html>
+</html>
