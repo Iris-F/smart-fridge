@@ -36,7 +36,7 @@ router.post('/login', async (req, res) => {
         res.redirect('/home');
     }
     else {
-        res.redirect('/login')
+        res.redirect('/users/login')
     }
 
 })
