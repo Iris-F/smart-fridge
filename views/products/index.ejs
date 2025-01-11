@@ -31,6 +31,10 @@
                                         <button class="btn btn-link">Delete</button>
                                     </form>
                                 -->
+                                     <form style="display: inline-block" action="/products?_method=PUT" method="POST">
+                                        <input type="hidden" name="id" value="<%= product._id %>">
+                                        <button class="btn btn-link">Delete</button>
+                                     </form>
                                 </li>
                                 <%}%>
                             <%}%>
