@@ -67,6 +67,17 @@ app.get('/products', async (req, res) => {
 
 })
 
+//EDIT inventory item in the database: reset quantity in database to 0
+app.put('/products', async (req, res) => {
+    if (!req.session.user_id) {
+        return res.redirect('/users/login')
+    }
+    const { id } = req.body;
+    const product = await Product.findByIdAndUpdate(id, { quantity: 0 }, { runValidators: true, new: true });
+    res.redirect('/products');
+})
+
+
 //NEW: show form for adding an existing product to the inventory list
 app.get('/products/addtolist', async (req, res) => {
     if (!req.session.user_id) {
