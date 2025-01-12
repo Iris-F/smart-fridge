@@ -214,7 +214,20 @@ app.get('/products/search', async (req, res) => {
 })
 
 
-
+// Route to update existing products
+app.get('/admin/update-products', async (req, res) => {
+    try {
+      // Add new field to all products that are missing the field
+      const result = await Product.updateMany(
+        { groceryQuantity: { $exists: false } }, // Find products that don't have the new field
+        { $set: { groceryQuantity: '0' } } // Set the new field to a default value
+      );
+      res.send(`Updated ${result.nModified} products with the new field.`);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error updating products.');
+    }
+  });
 
 
 
