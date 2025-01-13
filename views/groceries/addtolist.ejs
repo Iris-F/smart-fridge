@@ -1,0 +1,120 @@
+<%- include('../partials/head')%>
+
+    <body>
+        <%- include('../partials/navbar.ejs')%>
+            <div class="container">
+                <h1>Add an item to the Shopping List</h1>
+
+            <!--
+                <form class="search" action="/products/search" method="GET">
+                    <div class="container">
+                        <input class="search" type="text" placeholder="Search for an item" name="itemname">
+                        <button><i class="fas fa-search">Search</i></button>
+                    </div>
+                </form>
+                <hr>
+            -->
+            <hr>
+            <h4>Available Inventory Items for category: <%= category %></h4>
+            <ul>
+                <% for(let product of products) { %>
+                    <% if (product.quantity > 0) { %>
+                    <li>
+
+                        <%= product.name %>,
+                            Quantity: <%= product.quantity %>
+
+
+                    </li>
+                    <% }%>
+                    <%}%>
+            </ul>
+            <div class="container">
+                <form action="/groceries/addtolist?_method=PUT" method="POST">
+                    <p>Select a Product from the list:</p>
+                    <label for="name">Product</label>
+
+                    <select name="id" required id="name">
+                            <option disabled selected value>
+                                Select a product
+                            </option>
+                            
+                            <% for(let category of categories){ %>
+                                <%const hasProducts=products.some(product=> product.category === category); %>
+                                <% if (hasProducts) { %>
+                                <optgroup label="<%=category%>">
+                                    <% for(let product of products) { %>
+                                        <% if (product.category===category) { %>
+                                            <option value="<%= product._id %>" data-category="<%= product.category %>" data-quantity="<%= product.groceryQuantity %>">
+                                            <%= product.name %>
+
+                                        </option>
+                                        <% } %>
+                                    <% } %>
+                                </optgroup>
+                                <% } %>
+                            <% } %>
+                        </select>
+
+                    <label for="category">Product Category</label>
+                    <select hidden name="category" required id="category">
+                        <option disabled selected value>
+                            Product category
+                        </option>
+                        <% for(let category of categories){ %>
+                            <option value="<%=category%>">
+                                <%=category%>
+                            </option>
+                        <% } %>
+                    </select>
+
+                    <label for="groceryQuantity">Quantity</label>
+                    <input type="number" id="groceryQuantity" name="groceryQuantity" required min="1" placeholder="Quantity">
+
+                    <button>Submit</button>
+                </div>
+                </form>
+                <a href="/groceries/new?category=<%=category%>">I want to add a product that is not on the list</a>
+            </div>
+
+            <hr>
+
+            <div class="container">
+                <a href="/groceries/categories" class="btn btn-primary">Back to categories</a>
+                <a href="/groceries" class="btn btn-primary">Cancel</a>
+            </div>
+            <script>
+                const productSelect = document.getElementById('name');
+                const categorySelect = document.getElementById('category');
+                const quantityInput = document.getElementById('groceryQuantity');
+            
+                productSelect.addEventListener('change', () => {
+                    // Get the selected product option
+                    const selectedOption = productSelect.options[productSelect.selectedIndex];
+                    const category = selectedOption.getAttribute('data-category');
+                    const quantity = selectedOption.getAttribute('data-quantity');
+                                
+                    // Set the quantity input field
+                    if (quantity) {
+                        quantityInput.value = quantity;
+                    } else {
+                        quantityInput.value = ''; // Reset if no quantity is provided
+                    }
+
+                    // Set the category select field
+                    for (let option of categorySelect.options) {
+                        if (option.value === category) {
+                            option.selected = true;
+                            return;
+                        }
+                    }
+                    function enableCategoryField() {
+                        document.getElementById('category').disabled = false;
+                    }
+                    // If no matching category is found, reset selection
+                    // categorySelect.selectedIndex = 0;
+                });
+            </script>
+    </body>
+
+    </html>

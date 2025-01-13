@@ -1,0 +1,25 @@
+<%- include('../partials/head')%>
+
+    <body>
+        <%- include('../partials/navbar.ejs')%>
+            <div class="container">
+                <h1>Edit a Shopping List Item</h1>
+
+
+                <form action="/groceries/<%=product._id%>/edit?_method=PUT" method="POST">
+
+                    <label for="name">Product Name</label>
+                    <input disabled type="text" name="name" id="name" required placeholder="product name"
+                        value="<%=product.name%>">
+
+                    <label for="groceryQuantity">Quantity</label>
+                    <input type="number" id="groceryQuantity" name="groceryQuantity" value="<%= product.groceryQuantity %>">
+
+                    <button>Submit</button>
+                </form>
+                <a href="/groceries/categories">Back to categories</a>
+                <a href="/groceries">Cancel</a>
+            </div>
+    </body>
+
+    </html>

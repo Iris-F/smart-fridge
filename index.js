@@ -110,14 +110,14 @@ app.get('/products/new', async (req, res) => {
 //NEW: save the product in database with a POST method using an async function because this takes time
 app.post('/products', async (req, res) => {
     try {
-        const { expirydate, ...rest } = req.body; // Destructure expirydate from req.body
+        const { expirydate, redirectTo, ...rest } = req.body; // Destructure expirydate from req.body
         const newProduct = new Product({
             ...rest,
             expirydate: expirydate ? new Date(expirydate) : null // Convert string to Date
         });
         await newProduct.save();
         console.log("Saving new product!");
-        res.redirect('/products/');
+        res.redirect(redirectTo || '/products');
     } catch (error) {
         console.error("Error saving product:", error);
         res.status(500).send("An error occurred while saving the product.");
@@ -175,6 +175,27 @@ app.get('/groceries', async (req, res) => {
     res.render('groceries/index', { products, categories, category })
 })
 
+//NEW: show form for adding an existing product to the inventory list
+app.get('/groceries/addtolist', async (req, res) => {
+    if (!req.session.user_id) {
+        return res.redirect('/users/login')
+    }
+    const { category } = req.query;
+    const products = await Product.find({ category })
+    products.sort((a, b) => a.name.localeCompare(b.name));
+    res.render('groceries/addtolist', { products, category, categories })
+})
+
+//EDIT grocery list quantity of product in the database: save changes to database
+app.put('/groceries/addtolist', async (req, res) => {
+    if (!req.session.user_id) {
+        return res.redirect('/users/login')
+    }
+    const { id } = req.body;
+    const product = await Product.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
+    res.redirect('/groceries/');
+})
+
 //SHOW: show categories for adding a new shopping list item
 app.get('/groceries/categories', (req, res) => {
     res.render('groceries/categories', { categories })
@@ -191,7 +212,34 @@ app.get('/groceries/new', async (req, res) => {
     res.render('groceries/new', { products, category, categories })
 })
 
+//EDIT grocery list item in the database: reset groceryQuantity in database to 0
+app.put('/groceries', async (req, res) => {
+    if (!req.session.user_id) {
+        return res.redirect('/users/login')
+    }
+    const { id } = req.body;
+    const product = await Product.findByIdAndUpdate(id, { groceryQuantity: 0 }, { runValidators: true, new: true });
+    res.redirect('/groceries');
+})
 
+//EDIT: show form for editing a product
+app.get('/groceries/:id/edit', async (req, res) => {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    res.render('groceries/edit', { product, categories })
+})
+
+//EDIT grocery list item in the database: change groceryQuantity in database
+app.put('/groceries/:id/edit', async (req, res) => {
+    if (!req.session.user_id) {
+        return res.redirect('/users/login')
+    }
+    const { id } = req.params;
+    const { groceryQuantity } = req.body;
+    const product = await Product.findByIdAndUpdate(id, { groceryQuantity: groceryQuantity }, { runValidators: true, new: true });
+    console.log(req.body);
+    res.redirect('/groceries');
+})
 
 
 //SEARCH route

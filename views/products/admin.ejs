@@ -24,7 +24,9 @@
                                     <%= product.category %>,
                                     Expiry Date: <%= product.expirydate ?
                                     product.expirydate.toLocaleDateString('nl-NL')
-                                    : 'N/A' %>
+                                    : 'N/A' %>,
+                                    Grocery List Quantity: <%= product.groceryQuantity %>
+                                    
                                     <a href="/products/<%=product._id%>/edit">Edit Item</a>
                                     <form style="display: inline-block" action=" /products/<%=product._id%>?_method=DELETE" method="POST">
                                         <button class="btn btn-link">Delete</button>
