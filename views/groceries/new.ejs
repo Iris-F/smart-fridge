@@ -9,6 +9,7 @@
                 </h4>
                 <ul>
                     <% for(let product of products) { %>
+                        <% if (product.quantity > 0) { %>
                         <li>
 
                             <%= product.name %>,
@@ -17,25 +18,36 @@
 
                         </li>
                         <% }%>
+                        <%}%>
                 </ul>
                 <hr>
                 <h2>
                     Add Shopping List Items
                 </h2>
                 <form action="/products" method="POST">
+                    <input type="hidden" name="redirectTo" value="/groceries">
                     <label for="name">Name of Shopping List Item</label>
                     <input type="text" name="name" id="name" required placeholder="Shopping List item name">
-                    <label for="quantity">Quantity</label>
-                    <input type="number" id="quantity" name="quantity" required placeholder="Quantity">
+                    <label for="groceryQuantity">Quantity</label>
+                    <input type="number" id="groceryQuantity" name="groceryQuantity" required placeholder="Quantity">
+                    <input hidden type="number" id="quantity" name="quantity" value="0">
+
                     <label for="category">Category</label>
-                    <input type="text" name="category" id="category" value="<%=category%>" disabled>
-                    <button disabled>Submit</button>
+                    <select hidden name="category" required id="category">
+                        
+                            <option value="<%=category%>">
+                                <%=category%>
+                            </option>
+                            
+                    </select>
+
+                    <button>Submit</button>
                 </form>
             </div>
             <hr>
             <div class="container">
-                <a href="/groceries/categories">Back to categories</a>
-                <a href="/groceries"">Cancel</a>
+                <a href="/groceries/categories" class="btn btn-primary">Back to categories</a>
+                <a href="/groceries" class="btn btn-primary">Cancel</a>
                 </form>
             </div>
     </body>

@@ -4,17 +4,12 @@
         <%- include('../partials/navbar.ejs')%>
             <div class="container">
                 <h1>
-                    Shopping List
+                    Shopping List  <a href="/groceries/categories" class="btn btn-primary">Add New Item to Shopping List</a>
                 </h1>
-                <h4>
-                    Available Inventory Items
-                </h4>
-
                 <hr>
-
                 <ul>
                     <% for(let category of categories){ %>
-                        <%const hasProducts=products.some(product=> product.category === category); %>
+                        <%const hasProducts=products.some(product=> (product.category === category && product.groceryQuantity >0)); %>
                             <% if (hasProducts) { %>
                                 <li style="list-style-type: none;">
                                     <b>
@@ -23,12 +18,18 @@
 
                                     <ul>
                                         <% for(let product of products) { %>
-                                            <% if (product.category===category) { %>
+                                            <% if (product.category===category && product.groceryQuantity > 0) { %>
                                                 <li>
 
                                                     <%= product.name %>,
-                                                        Quantity: <%= product.quantity %>
+                                                        Quantity: <%= product.groceryQuantity %>
 
+                                                        <a href="/groceries/<%=product._id%>/edit">Edit Quantity</a>
+                                                
+                                                        <form style="display: inline-block" action="/groceries?_method=PUT" method="POST">
+                                                           <input type="hidden" name="id" value="<%= product._id %>">
+                                                           <button class="btn btn-link">Delete</button>
+                                                        </form>
                                                             <% }%>
                                                 </li>
                                                 <% }%>
@@ -38,13 +39,6 @@
                                 <%}%>
                                     <% } %>
                 </ul>
-                <hr>
-                <h2>
-                    Shopping List Items
-                </h2>
-                <div>
-                    <a href="/groceries/categories">Add New Item to Shopping List</a>
-                </div>
                 <hr>
                 <a href="/home" class="btn btn-primary">Back to Home</a>
 
