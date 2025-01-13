@@ -237,7 +237,6 @@ app.put('/groceries/:id/edit', async (req, res) => {
     const { id } = req.params;
     const { groceryQuantity } = req.body;
     const product = await Product.findByIdAndUpdate(id, { groceryQuantity: groceryQuantity }, { runValidators: true, new: true });
-    console.log(req.body);
     res.redirect('/groceries');
 })
 
